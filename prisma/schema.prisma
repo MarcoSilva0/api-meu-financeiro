@@ -11,3 +11,63 @@ generator client {
 datasource db {
   provider = "sqlite"
 }
+
+model User {
+  id               Int               @id @default(autoincrement())
+  name             String
+  email            String            @unique
+  password         String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  categories       Category[]
+  financialRecords FinancialRecord[]
+
+  @@map("users")
+}
+
+model Category {
+  id               Int               @id @default(autoincrement())
+  name             String            @unique
+  financialRecords FinancialRecord[]
+  userId           Int
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  user             User              @relation(fields: [userId], references: [id])
+
+  @@map("categories")
+}
+
+model PaymentMethod {
+  id               Int               @id @default(autoincrement())
+  name             String            @unique
+  financialRecords FinancialRecord[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@map("payment_methods")
+}
+
+model FinancialRecord {
+  id                Int           @id @default(autoincrement())
+  title             String
+  type              String // "income" or "expense"
+  amount            Float
+  description       String
+  installmentsTotal Int
+  installmentsPaid  Int
+  date              DateTime
+  expired           Boolean       @default(false)
+  expireAt          DateTime?
+  paid              Boolean       @default(false)
+  paidAt            DateTime?
+  categoryId        Int
+  paymentMethodId   Int
+  userId            Int
+  user              User          @relation(fields: [userId], references: [id])
+  paymentMethod     PaymentMethod @relation(fields: [paymentMethodId], references: [id])
+  category          Category      @relation(fields: [categoryId], references: [id])
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@map("financial_records")
+}
