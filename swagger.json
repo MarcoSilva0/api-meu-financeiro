@@ -162,6 +162,356 @@
           "Auth"
         ]
       }
+    },
+    "/categories": {
+      "post": {
+        "operationId": "CategoryController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCategoryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Criar categoria",
+        "tags": [
+          "Category"
+        ]
+      },
+      "get": {
+        "operationId": "CategoryController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryResponseDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Listar categorias do usuário autenticado",
+        "tags": [
+          "Category"
+        ]
+      }
+    },
+    "/categories/{id}": {
+      "put": {
+        "operationId": "CategoryController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCategoryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Atualizar categoria do usuário autenticado",
+        "tags": [
+          "Category"
+        ]
+      },
+      "delete": {
+        "operationId": "CategoryController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteCategoryResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Excluir categoria do usuário autenticado",
+        "tags": [
+          "Category"
+        ]
+      }
+    },
+    "/payment-methods": {
+      "get": {
+        "operationId": "PaymentMethodController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodResponseDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Listar formas de pagamento",
+        "tags": [
+          "PaymentMethod"
+        ]
+      }
+    },
+    "/financial-records": {
+      "post": {
+        "operationId": "FinancialRecordController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFinancialRecordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FinancialRecordResponseDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Criar lançamento financeiro (com geração automática de parcelas nos meses seguintes)",
+        "tags": [
+          "FinancialRecord"
+        ]
+      },
+      "get": {
+        "operationId": "FinancialRecordController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FinancialRecordResponseDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Listar lançamentos do usuário autenticado",
+        "tags": [
+          "FinancialRecord"
+        ]
+      }
+    },
+    "/financial-records/{id}": {
+      "put": {
+        "operationId": "FinancialRecordController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFinancialRecordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinancialRecordResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Atualizar um lançamento do usuário autenticado",
+        "tags": [
+          "FinancialRecord"
+        ]
+      },
+      "delete": {
+        "operationId": "FinancialRecordController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteFinancialRecordResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token JWT inválido"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Excluir um lançamento do usuário autenticado",
+        "tags": [
+          "FinancialRecord"
+        ]
+      }
     }
   },
   "info": {
@@ -308,6 +658,318 @@
           "message": {
             "type": "string",
             "example": "Sessão encerrada com sucesso"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "CreateCategoryDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Alimentação",
+            "description": "Nome da categoria"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CategoryResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Alimentação"
+          },
+          "userId": {
+            "type": "number",
+            "example": 1
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-03-25T10:00:00.000Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-03-25T10:00:00.000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "userId",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "UpdateCategoryDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Mercado",
+            "description": "Novo nome da categoria"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "DeleteCategoryResponseDto": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Categoria removida com sucesso"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "PaymentMethodResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Cartão de crédito"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-03-25T10:00:00.000Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-03-25T10:00:00.000Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateFinancialRecordDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Parcela notebook"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "income",
+              "expense"
+            ],
+            "example": "expense"
+          },
+          "amount": {
+            "type": "number",
+            "example": 350.5
+          },
+          "description": {
+            "type": "string",
+            "example": "Compra de notebook para trabalho"
+          },
+          "installmentsTotal": {
+            "type": "number",
+            "example": 12,
+            "default": 1
+          },
+          "date": {
+            "type": "string",
+            "example": "2026-03-25T00:00:00.000Z"
+          },
+          "expireAt": {
+            "type": "string",
+            "example": "2026-04-10T00:00:00.000Z"
+          },
+          "categoryId": {
+            "type": "number",
+            "example": 1
+          },
+          "paymentMethodId": {
+            "type": "number",
+            "example": 1
+          }
+        },
+        "required": [
+          "title",
+          "type",
+          "amount",
+          "description",
+          "installmentsTotal",
+          "date",
+          "categoryId",
+          "paymentMethodId"
+        ]
+      },
+      "FinancialRecordResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Parcela notebook"
+          },
+          "type": {
+            "type": "string",
+            "example": "expense"
+          },
+          "amount": {
+            "type": "number",
+            "example": 350.5
+          },
+          "description": {
+            "type": "string",
+            "example": "Compra de notebook para trabalho"
+          },
+          "installmentsTotal": {
+            "type": "number",
+            "example": 12
+          },
+          "installmentNumber": {
+            "type": "number",
+            "example": 1
+          },
+          "installmentGroup": {
+            "type": "string",
+            "example": "f2095cb2-657f-4cc6-b214-0bf85904ca40"
+          },
+          "date": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-03-25T00:00:00.000Z"
+          },
+          "expireAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-04-10T00:00:00.000Z"
+          },
+          "paid": {
+            "type": "boolean",
+            "example": false
+          },
+          "paidAt": {
+            "type": "object",
+            "example": null
+          },
+          "categoryId": {
+            "type": "number",
+            "example": 1
+          },
+          "paymentMethodId": {
+            "type": "number",
+            "example": 1
+          },
+          "userId": {
+            "type": "number",
+            "example": 1
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-03-25T00:00:00.000Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-03-25T00:00:00.000Z"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "type",
+          "amount",
+          "description",
+          "installmentsTotal",
+          "installmentNumber",
+          "date",
+          "paid",
+          "categoryId",
+          "paymentMethodId",
+          "userId",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "UpdateFinancialRecordDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Parcela notebook"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "income",
+              "expense"
+            ],
+            "example": "expense"
+          },
+          "amount": {
+            "type": "number",
+            "example": 350.5
+          },
+          "description": {
+            "type": "string",
+            "example": "Compra de notebook para trabalho"
+          },
+          "date": {
+            "type": "string",
+            "example": "2026-03-25T00:00:00.000Z"
+          },
+          "expireAt": {
+            "type": "string",
+            "example": "2026-04-10T00:00:00.000Z"
+          },
+          "categoryId": {
+            "type": "number",
+            "example": 1
+          },
+          "paymentMethodId": {
+            "type": "number",
+            "example": 1
+          }
+        },
+        "required": [
+          "title",
+          "type",
+          "amount",
+          "description",
+          "date",
+          "categoryId",
+          "paymentMethodId"
+        ]
+      },
+      "DeleteFinancialRecordResponseDto": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Lançamento financeiro removido com sucesso"
           }
         },
         "required": [
