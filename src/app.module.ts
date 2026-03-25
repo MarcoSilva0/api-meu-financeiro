@@ -5,6 +5,9 @@ import { UserModule } from './user/user.module';
 import { DatabaseModule } from './shared/database/database.module';
 import { envSchema } from './shared/config/env';
 import { EnvConfigModule } from './shared/config/config.module';
+import { CategoryModule } from './category/category.module';
+import { PaymentMethodModule } from './payment-method/payment-method.module';
+import { FinancialRecordModule } from './financial-record/financial-record.module';
 
 @Module({
   imports: [
@@ -17,6 +20,9 @@ import { EnvConfigModule } from './shared/config/config.module';
     DatabaseModule,
     AuthModule,
     UserModule,
+    CategoryModule,
+    PaymentMethodModule,
+    FinancialRecordModule,
   ],
 })
 export class AppModule {}
